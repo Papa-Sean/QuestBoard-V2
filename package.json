@@ -1,0 +1,21 @@
+{
+  "name": "questboard-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "heroku-prebuild":"cd client && npm install && cd .. && cd server && npm install && npm install mongoose",
+    "start": "cd server && npm start & cd client && npm start && fg",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Papa-Sean/QuestBoard-V2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Papa-Sean/QuestBoard-V2/issues"
+  },
+  "homepage": "https://github.com/Papa-Sean/QuestBoard-V2#readme"
+}
