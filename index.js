@@ -24,13 +24,23 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
+if(process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
+app.all('*', function(req, res, next) {
+    var origin = req.get('origin'); 
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
 
 app.get('/', (req,res) =>{
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+    // res.setHeader('Access-Control-Allow-Origin', '*');
+    // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
     res.send('Hello to Quest Board API')
 });
 

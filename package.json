@@ -1,21 +1,32 @@
 {
-  "name": "questboard-v2",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "heroku-prebuild":"cd client && npm install && npm run build && cd .. && cd server && npm install && npm install mongoose",
-    "start": "cd client && npm start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "install": "cd client && npm install",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Papa-Sean/QuestBoard-V2.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Papa-Sean/QuestBoard-V2/issues"
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "if-env": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.18",
+    "nodemon": "^2.0.7"
   },
-  "homepage": "https://github.com/Papa-Sean/QuestBoard-V2#readme"
+  "devDependencies": {
+    "concurrently": "^6.0.0"
+  }
 }
