@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "heroku-prebuild":"cd client && npm install && cd .. && cd server && npm install && npm install mongoose",
-    "start": "cd server && npm start & cd client && npm start && fg",
+    "heroku-prebuild":"cd client && npm install && npm run build && cd .. && cd server && npm install && npm install mongoose",
+    "start": "cd client && npm start && cd .. && cd server && npm start && fg",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
