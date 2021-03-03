@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { MONGO_DB } from 'dotenv';
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+const API = axios.create({ baseURL: `http://localhost:${MONGO_DB}` });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
