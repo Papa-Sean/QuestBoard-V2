@@ -9,20 +9,29 @@ import userRoutes from './routes/users.js';
 
 const app = express();
 dotenv.config();
-
+const whitelist = ['https://questboard-v2.herokuapp.com']
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
 
-app.get('/', (req,res) =>{
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-    res.send('Hello to Quest Board API')
-});
+// app.get('/', (req,res) =>{
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+//     res.send('Hello to Quest Board API')
+// });
 
 const PORT = process.env.PORT || 5000;
 
